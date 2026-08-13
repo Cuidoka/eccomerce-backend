@@ -1,0 +1,33 @@
+{
+  "name": "Projeto",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "forwardPorts": [8080, 3306],
+// Define as Customizações
+  "customizations": {
+    /// Especifica as extensões que serão instaladas
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker", // Docker        
+        "vscjava.vscode-java-pack",    // Java       
+        "vmware.vscode-spring-boot",   // Spring Boot       
+        "vscjava.vscode-spring-boot-dashboard", // Dashboard de Apps
+        "cweijan.vscode-mysql-client2" // MySQL       
+      ],
+      // Define configurações visuais e de ambiente do Visual Studio Code
+      "settings": {
+        "workbench.colorTheme": "Dark Modern", // Tema
+        "editor.fontSize": 14, // Fonte do Editor
+        "terminal.integrated.fontSize": 14, // Fonte do Terminal
+        "java.server.launchMode": "Standard" // Executa o Java em modo padrào
+      }
+    }
+  },
+    // Executa o comando a seguir na criação do container
+  "postCreateCommand": "/bin/bash .devcontainer/init-mysql.sh",
+  // Executa o comando especificado na inicialização do container
+  "postStartCommand": "service mysql start"
+}
